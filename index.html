@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
     <!-- Leaflet CSS for maps -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<!-- Leaflet Draw CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+    <!-- Leaflet Draw CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -871,26 +871,6 @@
                                         <small>100%</small>
                                     </div>
                                 </div>
-<!-- ADD THIS CARD AFTER THE EXISTING "Add New Project" CARD -->
-<div class="card mt-4">
-    <div class="card-header">
-        <h5 class="card-title mb-0">Custom Monitoring Forms</h5>
-    </div>
-    <div class="card-body">
-        <div id="form-builder-section">
-            <p class="text-muted">Select a project to create or edit custom monitoring forms.</p>
-            <div class="mb-3">
-                <label class="form-label">Select Project:</label>
-                <select class="form-select" id="formBuilderProject">
-                    <option value="">Choose a project...</option>
-                </select>
-            </div>
-            <div id="form-builder-interface" style="display: none;">
-                <!-- Form builder will appear here -->
-            </div>
-        </div>
-    </div>
-</div>
                                 <!-- New Location Section -->
                                 <div class="mb-3">
                                     <label class="form-label">Project Location</label>
@@ -922,6 +902,27 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary">Save Project</button>
                             </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Custom Monitoring Forms Card -->
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">Custom Monitoring Forms</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="form-builder-section">
+                                <p class="text-muted">Select a project to create or edit custom monitoring forms.</p>
+                                <div class="mb-3">
+                                    <label class="form-label">Select Project:</label>
+                                    <select class="form-select" id="formBuilderProject">
+                                        <option value="">Choose a project...</option>
+                                    </select>
+                                </div>
+                                <div id="form-builder-interface" style="display: none;">
+                                    <!-- Form builder will appear here -->
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1008,6 +1009,69 @@
                                     </div>
                                 </div>
 
+                                <!-- Ecosystem Health Evaluation Card -->
+                                <div class="card mt-3">
+                                    <div class="card-header">
+                                        <h6 class="card-title mb-0">Ecosystem Health Evaluation</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label for="vegetationCover" class="form-label">Vegetation Cover (%)</label>
+                                                    <input type="number" class="form-control" id="vegetationCover" min="0" max="100" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label for="nativeSpecies" class="form-label">Native Species (%)</label>
+                                                    <input type="number" class="form-control" id="nativeSpecies" min="0" max="100" value="0">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="mb-3">
+                                                    <label for="weedCover" class="form-label">Weed Cover (%)</label>
+                                                    <input type="number" class="form-control" id="weedCover" min="0" max="100" value="0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="soilStability" class="form-label">Soil Stability (1-5)</label>
+                                                    <select class="form-select" id="soilStability">
+                                                        <option value="1">1 - Very Poor</option>
+                                                        <option value="2">2 - Poor</option>
+                                                        <option value="3" selected>3 - Fair</option>
+                                                        <option value="4">4 - Good</option>
+                                                        <option value="5">5 - Excellent</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    <label for="speciesRichness" class="form-label">Species Richness</label>
+                                                    <input type="number" class="form-control" id="speciesRichness" min="0" value="0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Health Score Preview -->
+                                        <div class="mt-3 p-3 bg-light rounded">
+                                            <h6>Health Score Preview</h6>
+                                            <div id="healthScorePreview">
+                                                <p class="text-muted mb-1">Enter values above to see calculated health score</p>
+                                                <div class="d-none" id="scoreDisplay">
+                                                    <div class="progress mb-2" style="height: 20px;">
+                                                        <div class="progress-bar" id="scoreProgress" role="progressbar" style="width: 0%;"></div>
+                                                    </div>
+                                                    <p class="mb-0"><strong>Score: <span id="scoreValue">0</span>/100</strong> - <span id="scoreRating">No rating</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="mb-3">
                                     <label for="assessmentDescription" class="form-label">Description *</label>
                                     <textarea class="form-control" id="assessmentDescription" rows="3" required></textarea>
@@ -1017,47 +1081,7 @@
                         </div>
                     </div>
                 </div>
-<!-- ADD THIS SECTION to the assessment form -->
-<div class="row">
-    <div class="col-md-4">
-        <div class="mb-3">
-            <label for="vegetationCover" class="form-label">Vegetation Cover (%)</label>
-            <input type="number" class="form-control" id="vegetationCover" min="0" max="100" value="0">
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="mb-3">
-            <label for="nativeSpecies" class="form-label">Native Species (%)</label>
-            <input type="number" class="form-control" id="nativeSpecies" min="0" max="100" value="0">
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="mb-3">
-            <label for="weedCover" class="form-label">Weed Cover (%)</label>
-            <input type="number" class="form-control" id="weedCover" min="0" max="100" value="0">
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <div class="mb-3">
-            <label for="soilStability" class="form-label">Soil Stability (1-5)</label>
-            <select class="form-select" id="soilStability">
-                <option value="1">1 - Very Poor</option>
-                <option value="2">2 - Poor</option>
-                <option value="3" selected>3 - Fair</option>
-                <option value="4">4 - Good</option>
-                <option value="5">5 - Excellent</option>
-            </select>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="mb-3">
-            <label for="speciesRichness" class="form-label">Species Richness</label>
-            <input type="number" class="form-control" id="speciesRichness" min="0" value="0">
-        </div>
-    </div>
-</div>
+
                 <!-- Species Section -->
                 <div id="species" class="content-section">
                     <div class="section-header">
@@ -1294,7 +1318,23 @@
                     <div class="section-header">
                         <h2>Analytics</h2>
                         <p class="text-muted">Visualize and analyze your ecosystem data</p>
-                    </div>                   
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Ecosystem Health Trends</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-container" style="height: 400px;">
+                                        <canvas id="analyticsHealthTrendChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <div class="row mt-4">
                         <div class="col-md-6">
                             <div class="card">
@@ -1579,9 +1619,9 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
     <!-- Leaflet JS for maps -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<!-- Leaflet Draw and Turf.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+    <!-- Leaflet Draw and Turf.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
     <!-- AOS Animation Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -1748,6 +1788,7 @@
         // Chart instances
         let projectStatusChart = null;
         let healthTrendChart = null;
+        let analyticsHealthTrendChart = null;
         let speciesTypeChart = null;
         let maintenanceTypeChart = null;
         let monthlyActivityChart = null;
@@ -1756,72 +1797,72 @@
 
         // Map Functions
         function initProjectMap() {
-    if (projectMap) {
-        projectMap.remove();
-    }
-    
-    // Center on Burnie, Tasmania
-    projectMap = L.map('projectMap').setView([-41.0521, 145.9061], 11);
-    
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-    }).addTo(projectMap);
-    
-    // Add drawing tools
-    const drawnItems = new L.FeatureGroup();
-    projectMap.addLayer(drawnItems);
-    
-    const drawControl = new L.Control.Draw({
-        edit: {
-            featureGroup: drawnItems
-        },
-        draw: {
-            polygon: {
-                allowIntersection: false,
-                showArea: true,
-                shapeOptions: {
-                    color: '#2c5530'
-                }
-            },
-            polyline: false,
-            circle: false,
-            rectangle: false,
-            marker: {
-                icon: L.icon({
-                    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
-                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-                    iconSize: [25, 41],
-                    iconAnchor: [12, 41]
-                })
+            if (projectMap) {
+                projectMap.remove();
             }
+            
+            // Center on Burnie, Tasmania
+            projectMap = L.map('projectMap').setView([-41.0521, 145.9061], 11);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(projectMap);
+            
+            // Add drawing tools
+            const drawnItems = new L.FeatureGroup();
+            projectMap.addLayer(drawnItems);
+            
+            const drawControl = new L.Control.Draw({
+                edit: {
+                    featureGroup: drawnItems
+                },
+                draw: {
+                    polygon: {
+                        allowIntersection: false,
+                        showArea: true,
+                        shapeOptions: {
+                            color: '#2c5530'
+                        }
+                    },
+                    polyline: false,
+                    circle: false,
+                    rectangle: false,
+                    marker: {
+                        icon: L.icon({
+                            iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
+                            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+                            iconSize: [25, 41],
+                            iconAnchor: [12, 41]
+                        })
+                    }
+                }
+            });
+            projectMap.addControl(drawControl);
+            
+            // Handle drawn items
+            projectMap.on(L.Draw.Event.CREATED, function (e) {
+                const type = e.layerType;
+                const layer = e.layer;
+                
+                if (type === 'marker') {
+                    const latlng = layer.getLatLng();
+                    setProjectMarker(latlng.lat, latlng.lng);
+                } else if (type === 'polygon') {
+                    drawnItems.addLayer(layer);
+                    saveProjectBoundary(layer.getLatLngs());
+                }
+            });
+            
+            // Add existing marker if coordinates exist
+            const latInput = document.getElementById('projectLatitude');
+            const lngInput = document.getElementById('projectLongitude');
+            
+            if (latInput.value && lngInput.value) {
+                setProjectMarker(parseFloat(latInput.value), parseFloat(lngInput.value));
+            }
+            
+            return projectMap;
         }
-    });
-    projectMap.addControl(drawControl);
-    
-    // Handle drawn items
-    projectMap.on(L.Draw.Event.CREATED, function (e) {
-        const type = e.layerType;
-        const layer = e.layer;
-        
-        if (type === 'marker') {
-            const latlng = layer.getLatLng();
-            setProjectMarker(latlng.lat, latlng.lng);
-        } else if (type === 'polygon') {
-            drawnItems.addLayer(layer);
-            saveProjectBoundary(layer.getLatLngs());
-        }
-    });
-    
-    // Add existing marker if coordinates exist
-    const latInput = document.getElementById('projectLatitude');
-    const lngInput = document.getElementById('projectLongitude');
-    
-    if (latInput.value && lngInput.value) {
-        setProjectMarker(parseFloat(latInput.value), parseFloat(lngInput.value));
-    }
-    
-    return projectMap;
-}
 
         function setProjectMarker(lat, lng) {
             // Update form fields
@@ -1842,30 +1883,30 @@
             projectMap.setView([lat, lng], 10);
         }
 
-// NEW FUNCTION: Save project boundary
-function saveProjectBoundary(latlngs) {
-    const boundary = latlngs[0].map(latlng => [latlng.lat, latlng.lng]);
-    
-    // Calculate area
-    const polygon = turf.polygon([boundary]);
-    const area = turf.area(polygon);
-    const areaHectares = (area / 10000).toFixed(2);
-    
-    // Show area to user
-    showToast('Project Area', `Project boundary set. Area: ${areaHectares} hectares`, 'success');
-    
-    // Store in form data (you can add a hidden field for this later)
-    console.log('Project boundary:', boundary, 'Area:', areaHectares, 'hectares');
-}
+        // NEW FUNCTION: Save project boundary
+        function saveProjectBoundary(latlngs) {
+            const boundary = latlngs[0].map(latlng => [latlng.lat, latlng.lng]);
+            
+            // Calculate area
+            const polygon = turf.polygon([boundary]);
+            const area = turf.area(polygon);
+            const areaHectares = (area / 10000).toFixed(2);
+            
+            // Show area to user
+            showToast('Project Area', `Project boundary set. Area: ${areaHectares} hectares`, 'success');
+            
+            // Store in form data (you can add a hidden field for this later)
+            console.log('Project boundary:', boundary, 'Area:', areaHectares, 'hectares');
+        }
 
-// NEW FUNCTION: GPX/KML Import
-function handleFileImport(file) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        showToast('File Import', 'GPX/KML file imported successfully. Add markers manually for now.', 'info');
-    };
-    reader.readAsText(file);
-}
+        // NEW FUNCTION: GPX/KML Import
+        function handleFileImport(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                showToast('File Import', 'GPX/KML file imported successfully. Add markers manually for now.', 'info');
+            };
+            reader.readAsText(file);
+        }
 
         function clearProjectMarker() {
             if (projectMarker) {
@@ -1983,7 +2024,7 @@ function handleFileImport(file) {
 
         function loadProjectSelects() {
             const projects = db.getProjects();
-            const projectSelects = document.querySelectorAll('#assessmentProject, #speciesProject, #maintenanceProject, #assessmentProjectFilter, #speciesProjectFilter, #maintenanceProjectFilter, #exportProject');
+            const projectSelects = document.querySelectorAll('#assessmentProject, #speciesProject, #maintenanceProject, #assessmentProjectFilter, #speciesProjectFilter, #maintenanceProjectFilter, #exportProject, #formBuilderProject');
             
             projectSelects.forEach(select => {
                 const isFilter = select.id.includes('Filter') || select.id === 'exportProject';
@@ -2364,6 +2405,7 @@ function handleFileImport(file) {
             // Destroy existing charts if they exist
             if (projectStatusChart) projectStatusChart.destroy();
             if (healthTrendChart) healthTrendChart.destroy();
+            if (analyticsHealthTrendChart) analyticsHealthTrendChart.destroy();
             if (speciesTypeChart) speciesTypeChart.destroy();
             if (maintenanceTypeChart) maintenanceTypeChart.destroy();
             if (monthlyActivityChart) monthlyActivityChart.destroy();
@@ -2417,8 +2459,8 @@ function handleFileImport(file) {
                     }
                 }
             });
-            
-            // Health Trend Chart
+
+            // Ecosystem Health Trends Chart for Dashboard
             const sortedAssessments = [...assessments].sort((a, b) => new Date(a.date) - new Date(b.date));
             const healthValues = {
                 'excellent': 5,
@@ -2475,6 +2517,45 @@ function handleFileImport(file) {
                     }
                 }
             });
+            
+            // Ecosystem Health Trends Chart for Analytics
+            const healthTrendData = assessments
+                .filter(a => a.healthScore)
+                .sort((a, b) => new Date(a.date) - new Date(b.date));
+            
+            if (healthTrendData.length > 0) {
+                analyticsHealthTrendChart = new Chart(document.getElementById('analyticsHealthTrendChart'), {
+                    type: 'line',
+                    data: {
+                        labels: healthTrendData.map(a => formatDate(a.date, 'short')),
+                        datasets: [{
+                            label: 'Ecosystem Health Score',
+                            data: healthTrendData.map(a => a.healthScore.total),
+                            borderColor: 'rgb(75, 192, 192)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                            tension: 0.3,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                min: 0,
+                                max: 100,
+                                title: {
+                                    display: true,
+                                    text: 'Health Score (0-100)'
+                                }
+                            }
+                        }
+                    }
+                });
+            } else {
+                document.getElementById('analyticsHealthTrendChart').closest('.card-body').innerHTML = 
+                    '<p class="text-muted text-center">No ecosystem health data available yet. Create assessments with health scores to see trends.</p>';
+            }
             
             // Species Type Chart
             const speciesTypeData = {
@@ -2602,7 +2683,7 @@ function handleFileImport(file) {
                 
                 if (monthlyData[monthKey]) {
                     monthlyData[monthKey].maintenance++;
-                    }
+                }
             });
             
             monthlyActivityChart = new Chart(document.getElementById('monthlyActivityChart'), {
@@ -3074,44 +3155,44 @@ function handleFileImport(file) {
             loadDataSummary();
         });
 
-document.getElementById('assessmentForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Collect scoring data
-    const scoringData = {
-        vegetationCover: document.getElementById('vegetationCover').value,
-        nativeSpecies: document.getElementById('nativeSpecies').value,
-        weedCover: document.getElementById('weedCover').value,
-        soilStability: document.getElementById('soilStability').value,
-        speciesRichness: document.getElementById('speciesRichness').value
-    };
-    
-    // Calculate health score
-    const healthScore = ecosystemScoring.calculateHealthScore(scoringData);
-    
-    const assessment = {
-        date: document.getElementById('assessmentDate').value,
-        assessor: document.getElementById('assessor').value,
-        health: healthScore.rating, // Use calculated rating
-        projectId: document.getElementById('assessmentProject').value,
-        description: document.getElementById('assessmentDescription').value,
-        // Store detailed scoring data
-        scoringData: scoringData,
-        healthScore: healthScore
-    };
-    
-    db.saveAssessment(assessment);
-    this.reset();
-    loadAssessments();
-    loadDataSummary();
-    
-    // Show score summary
-    showToast(
-        'Assessment Saved', 
-        `Health Score: ${healthScore.total}/100 (${healthScore.rating})`, 
-        ecosystemScoring.getHealthColor(healthScore.total)
-    );
-});
+        document.getElementById('assessmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect scoring data
+            const scoringData = {
+                vegetationCover: document.getElementById('vegetationCover').value,
+                nativeSpecies: document.getElementById('nativeSpecies').value,
+                weedCover: document.getElementById('weedCover').value,
+                soilStability: document.getElementById('soilStability').value,
+                speciesRichness: document.getElementById('speciesRichness').value
+            };
+            
+            // Calculate health score
+            const healthScore = ecosystemScoring.calculateHealthScore(scoringData);
+            
+            const assessment = {
+                date: document.getElementById('assessmentDate').value,
+                assessor: document.getElementById('assessor').value,
+                health: healthScore.rating, // Use calculated rating
+                projectId: document.getElementById('assessmentProject').value,
+                description: document.getElementById('assessmentDescription').value,
+                // Store detailed scoring data
+                scoringData: scoringData,
+                healthScore: healthScore
+            };
+            
+            db.saveAssessment(assessment);
+            this.reset();
+            loadAssessments();
+            loadDataSummary();
+            
+            // Show score summary
+            showToast(
+                'Assessment Saved', 
+                `Health Score: ${healthScore.total}/100 (${healthScore.rating})`, 
+                ecosystemScoring.getHealthColor(healthScore.total)
+            );
+        });
 
         document.getElementById('speciesForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -3155,34 +3236,34 @@ document.getElementById('assessmentForm').addEventListener('submit', function(e)
         document.getElementById('useCurrentLocation').addEventListener('click', useCurrentLocation);
         document.getElementById('clearLocation').addEventListener('click', clearProjectMarker);
 
-// Add GPX/KML import functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = '.gpx,.kml';
-    fileInput.style.display = 'none';
-    fileInput.id = 'mapFileImport';
-    document.body.appendChild(fileInput);
-    
-    fileInput.addEventListener('change', function(e) {
-        if (e.target.files.length > 0) {
-            handleFileImport(e.target.files[0]);
-        }
-    });
-    
-    // Add import button next to existing map buttons
-    const importButton = document.createElement('button');
-    importButton.type = 'button';
-    importButton.className = 'btn btn-outline-secondary btn-sm ms-2';
-    importButton.innerHTML = '<i class="bi bi-upload"></i> Import GPX/KML';
-    importButton.onclick = function() {
-        document.getElementById('mapFileImport').click();
-    };
-    
-    // Find the button group and add our new button
-    const buttonGroup = document.querySelector('#useCurrentLocation').parentNode;
-    buttonGroup.appendChild(importButton);
-});
+        // Add GPX/KML import functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = '.gpx,.kml';
+            fileInput.style.display = 'none';
+            fileInput.id = 'mapFileImport';
+            document.body.appendChild(fileInput);
+            
+            fileInput.addEventListener('change', function(e) {
+                if (e.target.files.length > 0) {
+                    handleFileImport(e.target.files[0]);
+                }
+            });
+            
+            // Add import button next to existing map buttons
+            const importButton = document.createElement('button');
+            importButton.type = 'button';
+            importButton.className = 'btn btn-outline-secondary btn-sm ms-2';
+            importButton.innerHTML = '<i class="bi bi-upload"></i> Import GPX/KML';
+            importButton.onclick = function() {
+                document.getElementById('mapFileImport').click();
+            };
+            
+            // Find the button group and add our new button
+            const buttonGroup = document.querySelector('#useCurrentLocation').parentNode;
+            buttonGroup.appendChild(importButton);
+        });
 
         // Progress slider handler
         document.getElementById('projectProgress').addEventListener('input', function() {
@@ -3468,270 +3549,314 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-// ==================== FORM BUILDER SYSTEM ====================
+        // ==================== FORM BUILDER SYSTEM ====================
 
-const formBuilder = {
-    currentForm: [],
-    
-    init: function() {
-        this.loadFormTemplates();
-        this.setupFormBuilder();
-    },
-    
-    setupFormBuilder: function() {
-        const projectSelect = document.getElementById('formBuilderProject');
-        if (projectSelect) {
-            this.loadProjectsIntoSelect(projectSelect);
-            projectSelect.addEventListener('change', (e) => {
-                this.showFormBuilder(e.target.value);
+        const formBuilder = {
+            currentForm: [],
+            
+            init: function() {
+                this.loadFormTemplates();
+                this.setupFormBuilder();
+            },
+            
+            setupFormBuilder: function() {
+                const projectSelect = document.getElementById('formBuilderProject');
+                if (projectSelect) {
+                    this.loadProjectsIntoSelect(projectSelect);
+                    projectSelect.addEventListener('change', (e) => {
+                        this.showFormBuilder(e.target.value);
+                    });
+                }
+            },
+            
+            loadProjectsIntoSelect: function(selectElement) {
+                const projects = db.getProjects();
+                selectElement.innerHTML = '<option value="">Choose a project...</option>';
+                projects.forEach(project => {
+                    const option = document.createElement('option');
+                    option.value = project.id;
+                    option.textContent = project.name;
+                    selectElement.appendChild(option);
+                });
+            },
+            
+            showFormBuilder: function(projectId) {
+                const interfaceDiv = document.getElementById('form-builder-interface');
+                if (!projectId) {
+                    interfaceDiv.style.display = 'none';
+                    return;
+                }
+                
+                interfaceDiv.style.display = 'block';
+                interfaceDiv.innerHTML = this.createFormBuilderHTML(projectId);
+                this.loadExistingForm(projectId);
+            },
+            
+            createFormBuilderHTML: function(projectId) {
+                return `
+                    <div class="border p-3 mb-3">
+                        <h6>Form Builder</h6>
+                        <div class="mb-3">
+                            <label class="form-label">Form Title:</label>
+                            <input type="text" class="form-control" id="formTitle" value="Custom Monitoring Form">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Add Field:</label>
+                            <div class="btn-group mb-2">
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="formBuilder.addField('text')">
+                                    <i class="bi bi-text-paragraph"></i> Text
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="formBuilder.addField('number')">
+                                    <i class="bi bi-123"></i> Number
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="formBuilder.addField('select')">
+                                    <i class="bi bi-menu-down"></i> Dropdown
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="formBuilder.addField('checkbox')">
+                                    <i class="bi bi-check-square"></i> Checkbox
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div id="form-preview" class="border p-3 bg-light">
+                            <h6>Form Preview</h6>
+                            <form id="custom-form-preview"></form>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <button class="btn btn-success" onclick="formBuilder.saveForm('${projectId}')">
+                                <i class="bi bi-save"></i> Save Form Template
+                            </button>
+                            <button class="btn btn-outline-secondary" onclick="formBuilder.clearForm()">
+                                <i class="bi bi-trash"></i> Clear Form
+                            </button>
+                        </div>
+                    </div>
+                `;
+            },
+            
+            addField: function(type) {
+                const fieldId = 'field_' + Date.now();
+                const field = {
+                    id: fieldId,
+                    type: type,
+                    label: 'New Field',
+                    required: false,
+                    options: type === 'select' ? ['Option 1', 'Option 2'] : []
+                };
+                
+                this.currentForm.push(field);
+                this.updateFormPreview();
+            },
+            
+            updateFormPreview: function() {
+                const preview = document.getElementById('custom-form-preview');
+                preview.innerHTML = '';
+                
+                this.currentForm.forEach((field, index) => {
+                    const fieldHTML = this.createFieldHTML(field, index);
+                    preview.innerHTML += fieldHTML;
+                });
+            },
+            
+            createFieldHTML: function(field, index) {
+                let inputHTML = '';
+                
+                switch(field.type) {
+                    case 'text':
+                        inputHTML = `<input type="text" class="form-control" placeholder="Enter text">`;
+                        break;
+                    case 'number':
+                        inputHTML = `<input type="number" class="form-control" placeholder="Enter number">`;
+                        break;
+                    case 'select':
+                        const options = field.options.map(opt => `<option value="${opt}">${opt}</option>`).join('');
+                        inputHTML = `<select class="form-select">${options}</select>`;
+                        break;
+                    case 'checkbox':
+                        inputHTML = `<div class="form-check">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">${field.label}</label>
+                        </div>`;
+                        break;
+                }
+                
+                return `
+                    <div class="mb-3 form-builder-field" data-field-id="${field.id}">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <label class="form-label">${field.label}</label>
+                            <button type="button" class="btn btn-sm btn-outline-danger" onclick="formBuilder.removeField(${index})">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                        ${inputHTML}
+                    </div>
+                `;
+            },
+            
+            removeField: function(index) {
+                this.currentForm.splice(index, 1);
+                this.updateFormPreview();
+            },
+            
+            saveForm: function(projectId) {
+                const formTitle = document.getElementById('formTitle').value || 'Custom Form';
+                const formConfig = {
+                    title: formTitle,
+                    fields: this.currentForm,
+                    createdAt: new Date().toISOString()
+                };
+                
+                const templates = JSON.parse(localStorage.getItem('formTemplates') || '{}');
+                templates[projectId] = formConfig;
+                localStorage.setItem('formTemplates', JSON.stringify(templates));
+                
+                showToast('Form Saved', `Custom form "${formTitle}" has been saved for this project`, 'success');
+            },
+            
+            loadExistingForm: function(projectId) {
+                const templates = JSON.parse(localStorage.getItem('formTemplates') || '{}');
+                const existingForm = templates[projectId];
+                
+                if (existingForm) {
+                    this.currentForm = existingForm.fields || [];
+                    document.getElementById('formTitle').value = existingForm.title;
+                    this.updateFormPreview();
+                } else {
+                    this.currentForm = [];
+                    document.getElementById('formTitle').value = 'Custom Monitoring Form';
+                    this.updateFormPreview();
+                }
+            },
+            
+            clearForm: function() {
+                if (confirm('Are you sure you want to clear the entire form?')) {
+                    this.currentForm = [];
+                    this.updateFormPreview();
+                }
+            },
+            
+            loadFormTemplates: function() {
+                if (!localStorage.getItem('formTemplates')) {
+                    localStorage.setItem('formTemplates', JSON.stringify({}));
+                }
+            }
+        };
+
+        // ==================== ECOSYSTEM SCORING SYSTEM ====================
+
+        const ecosystemScoring = {
+            calculateHealthScore: function(assessmentData) {
+                const scores = {
+                    vegetation: this.scoreVegetation(
+                        parseFloat(assessmentData.vegetationCover || 0),
+                        parseFloat(assessmentData.nativeSpecies || 0)
+                    ),
+                    weeds: this.scoreWeeds(parseFloat(assessmentData.weedCover || 0)),
+                    soil: this.scoreSoil(parseInt(assessmentData.soilStability || 3)),
+                    biodiversity: this.scoreBiodiversity(parseInt(assessmentData.speciesRichness || 0))
+                };
+                
+                // Calculate weighted total
+                const totalScore = (
+                    scores.vegetation * 0.3 +      // 30% weight
+                    scores.weeds * 0.3 +           // 30% weight  
+                    scores.soil * 0.2 +            // 20% weight
+                    scores.biodiversity * 0.2      // 20% weight
+                );
+                
+                return {
+                    total: Math.round(totalScore),
+                    breakdown: scores,
+                    rating: this.getHealthRating(totalScore)
+                };
+            },
+            
+            scoreVegetation: function(cover, nativeSpecies) {
+                let score = 0;
+                // Cover component (0-50 points)
+                score += Math.min(cover * 0.5, 50);
+                // Native species component (0-50 points)
+                score += Math.min(nativeSpecies * 0.5, 50);
+                return Math.min(score, 100);
+            },
+            
+            scoreWeeds: function(cover) {
+                // Inverse relationship: lower weed cover = higher score
+                return Math.max(0, 100 - (cover * 1.5));
+            },
+            
+            scoreSoil: function(stability) {
+                // Convert 1-5 scale to 0-100 points
+                return (stability - 1) * 25;
+            },
+            
+            scoreBiodiversity: function(richness) {
+                // Cap at 20 species for 100 points
+                return Math.min(richness * 5, 100);
+            },
+            
+            getHealthRating: function(score) {
+                if (score >= 80) return 'excellent';
+                if (score >= 60) return 'good';
+                if (score >= 40) return 'fair';
+                if (score >= 20) return 'poor';
+                return 'degraded';
+            },
+            
+            getHealthColor: function(score) {
+                if (score >= 80) return 'success';
+                if (score >= 60) return 'info';
+                if (score >= 40) return 'warning';
+                if (score >= 20) return 'danger';
+                return 'dark';
+            }
+        };
+
+        // ADD THESE NEW FUNCTIONS RIGHT AFTER THE ECOSYSTEM SCORING OBJECT:
+
+        // Real-time score preview
+        function setupHealthScorePreview() {
+            const inputs = ['vegetationCover', 'nativeSpecies', 'weedCover', 'soilStability', 'speciesRichness'];
+            
+            inputs.forEach(inputId => {
+                const input = document.getElementById(inputId);
+                if (input) {
+                    input.addEventListener('input', updateHealthScorePreview);
+                }
             });
         }
-    },
-    
-    loadProjectsIntoSelect: function(selectElement) {
-        const projects = db.getProjects();
-        selectElement.innerHTML = '<option value="">Choose a project...</option>';
-        projects.forEach(project => {
-            const option = document.createElement('option');
-            option.value = project.id;
-            option.textContent = project.name;
-            selectElement.appendChild(option);
-        });
-    },
-    
-    showFormBuilder: function(projectId) {
-        const interfaceDiv = document.getElementById('form-builder-interface');
-        if (!projectId) {
-            interfaceDiv.style.display = 'none';
-            return;
-        }
-        
-        interfaceDiv.style.display = 'block';
-        interfaceDiv.innerHTML = this.createFormBuilderHTML(projectId);
-        this.loadExistingForm(projectId);
-    },
-    
-    createFormBuilderHTML: function(projectId) {
-        return `
-            <div class="border p-3 mb-3">
-                <h6>Form Builder</h6>
-                <div class="mb-3">
-                    <label class="form-label">Form Title:</label>
-                    <input type="text" class="form-control" id="formTitle" value="Custom Monitoring Form">
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label">Add Field:</label>
-                    <div class="btn-group mb-2">
-                        <button type="button" class="btn btn-sm btn-outline-primary" onclick="formBuilder.addField('text')">
-                            <i class="bi bi-text-paragraph"></i> Text
-                        </button>
-                        <button type="button" class="btn btn-sm btn-outline-primary" onclick="formBuilder.addField('number')">
-                            <i class="bi bi-123"></i> Number
-                        </button>
-                        <button type="button" class="btn btn-sm btn-outline-primary" onclick="formBuilder.addField('select')">
-                            <i class="bi bi-menu-down"></i> Dropdown
-                        </button>
-                        <button type="button" class="btn btn-sm btn-outline-primary" onclick="formBuilder.addField('checkbox')">
-                            <i class="bi bi-check-square"></i> Checkbox
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="form-preview" class="border p-3 bg-light">
-                    <h6>Form Preview</h6>
-                    <form id="custom-form-preview"></form>
-                </div>
-                
-                <div class="mt-3">
-                    <button class="btn btn-success" onclick="formBuilder.saveForm('${projectId}')">
-                        <i class="bi bi-save"></i> Save Form Template
-                    </button>
-                    <button class="btn btn-outline-secondary" onclick="formBuilder.clearForm()">
-                        <i class="bi bi-trash"></i> Clear Form
-                    </button>
-                </div>
-            </div>
-        `;
-    },
-    
-    addField: function(type) {
-        const fieldId = 'field_' + Date.now();
-        const field = {
-            id: fieldId,
-            type: type,
-            label: 'New Field',
-            required: false,
-            options: type === 'select' ? ['Option 1', 'Option 2'] : []
-        };
-        
-        this.currentForm.push(field);
-        this.updateFormPreview();
-    },
-    
-    updateFormPreview: function() {
-        const preview = document.getElementById('custom-form-preview');
-        preview.innerHTML = '';
-        
-        this.currentForm.forEach((field, index) => {
-            const fieldHTML = this.createFieldHTML(field, index);
-            preview.innerHTML += fieldHTML;
-        });
-    },
-    
-    createFieldHTML: function(field, index) {
-        let inputHTML = '';
-        
-        switch(field.type) {
-            case 'text':
-                inputHTML = `<input type="text" class="form-control" placeholder="Enter text">`;
-                break;
-            case 'number':
-                inputHTML = `<input type="number" class="form-control" placeholder="Enter number">`;
-                break;
-            case 'select':
-                const options = field.options.map(opt => `<option value="${opt}">${opt}</option>`).join('');
-                inputHTML = `<select class="form-select">${options}</select>`;
-                break;
-            case 'checkbox':
-                inputHTML = `<div class="form-check">
-                    <input class="form-check-input" type="checkbox">
-                    <label class="form-check-label">${field.label}</label>
-                </div>`;
-                break;
-        }
-        
-        return `
-            <div class="mb-3 form-builder-field" data-field-id="${field.id}">
-                <div class="d-flex justify-content-between align-items-center">
-                    <label class="form-label">${field.label}</label>
-                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="formBuilder.removeField(${index})">
-                        <i class="bi bi-trash"></i>
-                    </button>
-                </div>
-                ${inputHTML}
-            </div>
-        `;
-    },
-    
-    removeField: function(index) {
-        this.currentForm.splice(index, 1);
-        this.updateFormPreview();
-    },
-    
-    saveForm: function(projectId) {
-        const formTitle = document.getElementById('formTitle').value || 'Custom Form';
-        const formConfig = {
-            title: formTitle,
-            fields: this.currentForm,
-            createdAt: new Date().toISOString()
-        };
-        
-        const templates = JSON.parse(localStorage.getItem('formTemplates') || '{}');
-        templates[projectId] = formConfig;
-        localStorage.setItem('formTemplates', JSON.stringify(templates));
-        
-        showToast('Form Saved', `Custom form "${formTitle}" has been saved for this project`, 'success');
-    },
-    
-    loadExistingForm: function(projectId) {
-        const templates = JSON.parse(localStorage.getItem('formTemplates') || '{}');
-        const existingForm = templates[projectId];
-        
-        if (existingForm) {
-            this.currentForm = existingForm.fields || [];
-            document.getElementById('formTitle').value = existingForm.title;
-            this.updateFormPreview();
-        } else {
-            this.currentForm = [];
-            document.getElementById('formTitle').value = 'Custom Monitoring Form';
-            this.updateFormPreview();
-        }
-    },
-    
-    clearForm: function() {
-        if (confirm('Are you sure you want to clear the entire form?')) {
-            this.currentForm = [];
-            this.updateFormPreview();
-        }
-    },
-    
-    loadFormTemplates: function() {
-        if (!localStorage.getItem('formTemplates')) {
-            localStorage.setItem('formTemplates', JSON.stringify({}));
-        }
-    }
-};
 
-// ==================== ECOSYSTEM SCORING SYSTEM ====================
-
-const ecosystemScoring = {
-    calculateHealthScore: function(assessmentData) {
-        const scores = {
-            vegetation: this.scoreVegetation(
-                parseFloat(assessmentData.vegetationCover || 0),
-                parseFloat(assessmentData.nativeSpecies || 0)
-            ),
-            weeds: this.scoreWeeds(parseFloat(assessmentData.weedCover || 0)),
-            soil: this.scoreSoil(parseInt(assessmentData.soilStability || 3)),
-            biodiversity: this.scoreBiodiversity(parseInt(assessmentData.speciesRichness || 0))
-        };
-        
-        // Calculate weighted total
-        const totalScore = (
-            scores.vegetation * 0.3 +      // 30% weight
-            scores.weeds * 0.3 +           // 30% weight  
-            scores.soil * 0.2 +            // 20% weight
-            scores.biodiversity * 0.2      // 20% weight
-        );
-        
-        return {
-            total: Math.round(totalScore),
-            breakdown: scores,
-            rating: this.getHealthRating(totalScore)
-        };
-    },
-    
-    scoreVegetation: function(cover, nativeSpecies) {
-        let score = 0;
-        // Cover component (0-50 points)
-        score += Math.min(cover * 0.5, 50);
-        // Native species component (0-50 points)
-        score += Math.min(nativeSpecies * 0.5, 50);
-        return Math.min(score, 100);
-    },
-    
-    scoreWeeds: function(cover) {
-        // Inverse relationship: lower weed cover = higher score
-        return Math.max(0, 100 - (cover * 1.5));
-    },
-    
-    scoreSoil: function(stability) {
-        // Convert 1-5 scale to 0-100 points
-        return (stability - 1) * 25;
-    },
-    
-    scoreBiodiversity: function(richness) {
-        // Cap at 20 species for 100 points
-        return Math.min(richness * 5, 100);
-    },
-    
-    getHealthRating: function(score) {
-        if (score >= 80) return 'excellent';
-        if (score >= 60) return 'good';
-        if (score >= 40) return 'fair';
-        if (score >= 20) return 'poor';
-        return 'degraded';
-    },
-    
-    getHealthColor: function(score) {
-        if (score >= 80) return 'success';
-        if (score >= 60) return 'info';
-        if (score >= 40) return 'warning';
-        if (score >= 20) return 'danger';
-        return 'dark';
-    }
-};
+        function updateHealthScorePreview() {
+            const scoringData = {
+                vegetationCover: document.getElementById('vegetationCover').value,
+                nativeSpecies: document.getElementById('nativeSpecies').value,
+                weedCover: document.getElementById('weedCover').value,
+                soilStability: document.getElementById('soilStability').value,
+                speciesRichness: document.getElementById('speciesRichness').value
+            };
+            
+            // Only calculate if we have some data
+            const hasData = Object.values(scoringData).some(val => val && val > 0);
+            
+            if (hasData) {
+                const score = ecosystemScoring.calculateHealthScore(scoringData);
+                
+                document.getElementById('scoreValue').textContent = score.total;
+                document.getElementById('scoreRating').textContent = score.rating;
+                
+                const progressBar = document.getElementById('scoreProgress');
+                progressBar.style.width = `${score.total}%`;
+                progressBar.className = `progress-bar bg-${ecosystemScoring.getHealthColor(score.total)}`;
+                
+                document.getElementById('scoreDisplay').classList.remove('d-none');
+                document.getElementById('healthScorePreview').querySelector('.text-muted').classList.add('d-none');
+            } else {
+                document.getElementById('scoreDisplay').classList.add('d-none');
+                document.getElementById('healthScorePreview').querySelector('.text-muted').classList.remove('d-none');
+            }
+        }
 
         // Initialize the application
         function initApp() {
@@ -3741,15 +3866,16 @@ const ecosystemScoring = {
             setupViewToggle();
             loadDataSummary();
             
-    // ADD THESE TWO LINES:
-    formBuilder.init();
-    
-    // Initialize tooltips
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-}
+            // ADD THESE TWO LINES:
+            formBuilder.init();
+            setupHealthScorePreview();
+            
+            // Initialize tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        }
 
         // Start the app when the DOM is loaded
         document.addEventListener('DOMContentLoaded', initApp);
