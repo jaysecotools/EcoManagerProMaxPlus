@@ -1544,7 +1544,7 @@
                     
                     <div class="row">
                         <div class="col-md-8">
-                            <div class="card">
+                            <div class="card mb-3">
                                 <div class="card-header">
                                     <h5 class="card-title mb-0">Current Weather Conditions</h5>
                                 </div>
@@ -1581,7 +1581,30 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- INSERTED: 3-Day Forecast card (placed under Current Weather) -->
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h5 class="card-title mb-0">3-Day Forecast</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="forecast-display" class="row">
+                                                <!-- Forecast will be loaded here -->
+                                                <div class="col-12 text-center text-muted">
+                                                    <i class="bi bi-cloud-download"></i>
+                                                    <p class="mt-2">Loading forecast data...</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /INSERTED: 3-Day Forecast -->
+
                         </div>
+
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header">
@@ -1620,9 +1643,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- Maintenance Modal -->
     <div class="modal fade" id="maintenanceModal" tabindex="-1" aria-hidden="true">
@@ -1692,7 +1713,7 @@
 
         // WeatherAPI.com configuration
         const weatherConfig = {
-            apiKey: 'INSERT VALID API KEY HERE', // Replace with your actual WeatherAPI.com key
+            apiKey: 'ADD VALID API KEY HERE', // Replace with your actual WeatherAPI.com key
             baseUrl: 'https://api.weatherapi.com/v1/'
         };
 
@@ -1903,6 +1924,43 @@ document.getElementById('userGuideBtn').addEventListener('click', function(e) {
                 return null;
             }
         }
+
+function updateForecastDisplay(forecastData) {
+    if (!forecastData || !forecastData.forecast) return;
+    
+    const forecastContainer = document.createElement('div');
+    forecastContainer.className = 'row mt-3';
+    
+    forecastData.forecast.forecastday.forEach(day => {
+        const date = new Date(day.date);
+        const forecastElement = document.createElement('div');
+        forecastElement.className = 'col-md-4';
+        forecastElement.innerHTML = `
+            <div class="card text-center">
+                <div class="card-body">
+                    <h6>${date.toLocaleDateString('en-AU', { weekday: 'short', month: 'short', day: 'numeric' })}</h6>
+                    <i class="bi ${getWeatherIcon(day.day.condition.code)} fs-4"></i>
+                    <p class="mb-1">${Math.round(day.day.maxtemp_c)}° / ${Math.round(day.day.mintemp_c)}°</p>
+                    <small class="text-muted">${day.day.condition.text}</small>
+                    <div class="mt-2">
+                        <small>Rain: ${day.day.daily_chance_of_rain}%</small><br>
+                        <small>Humidity: ${day.day.avghumidity}%</small>
+                    </div>
+                </div>
+            </div>
+        `;
+        forecastContainer.appendChild(forecastElement);
+    });
+    
+    // Add forecast to current weather card
+    const currentWeatherCard = document.querySelector('#weather .card .card-body .row');
+    if (currentWeatherCard && !currentWeatherCard.querySelector('.forecast-container')) {
+        const forecastWrapper = document.createElement('div');
+        forecastWrapper.className = 'col-12 forecast-container mt-3';
+        forecastWrapper.appendChild(forecastContainer);
+        currentWeatherCard.appendChild(forecastWrapper);
+    }
+}
 
         // Updated icon mapping for WeatherAPI.com
         function getWeatherIcon(conditionCode) {
@@ -2196,7 +2254,7 @@ document.getElementById('userGuideBtn').addEventListener('click', function(e) {
             });
         }
 
-        // Enhanced loadWeatherData function for WeatherAPI.com
+        // Enhanced loadWeatherData function for WeatherAPI.com        // Enhanced loadWeatherData function for WeatherAPI.com
         async function loadWeatherData() {
             // Try to get location from projects first
             const projects = db.getProjects();
@@ -2227,12 +2285,14 @@ document.getElementById('userGuideBtn').addEventListener('click', function(e) {
                 
                 updateWeatherDisplay(currentWeather);
                 updateForecastChart(forecast);
+                updateForecastDisplay(forecast);
                 updateEnvironmentalAlerts(currentWeather);
                 
                 // Store weather data for later use
                 const updateTime = new Date().toLocaleTimeString();
                 localStorage.setItem('lastWeatherUpdate', new Date().toISOString());
                 localStorage.setItem('weatherData', JSON.stringify(currentWeather));
+                localStorage.setItem('forecastData', JSON.stringify(forecast));
                 document.getElementById('lastUpdate').textContent = `Last updated: ${updateTime}`;
                 
             } catch (error) {
@@ -2242,10 +2302,18 @@ document.getElementById('userGuideBtn').addEventListener('click', function(e) {
                 
                 // Try to use cached data
                 const cachedData = localStorage.getItem('weatherData');
+                const cachedForecast = localStorage.getItem('forecastData');
                 if (cachedData) {
                     const weatherData = JSON.parse(cachedData);
                     updateWeatherDisplay(weatherData);
                     updateEnvironmentalAlerts(weatherData);
+                    
+                    if (cachedForecast) {
+                        const forecastData = JSON.parse(cachedForecast);
+                        updateForecastChart(forecastData);
+                        updateForecastDisplay(forecastData);
+                    }
+                    
                     document.getElementById('lastUpdate').textContent = 'Using cached data';
                 } else {
                     // Fallback to mock data
