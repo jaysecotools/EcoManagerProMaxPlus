@@ -10,7 +10,7 @@
     <!-- Leaflet CSS for maps -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <!-- Leaflet Draw CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css"/>"/>"/>
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -32,6 +32,7 @@
             --dark: #1e2b1e;
             --sidebar-width: 280px;
             --transition: all 0.3s ease;
+--info: #17a2b8;
         }
 
         body {
@@ -1606,7 +1607,7 @@
                         </div>
                     </div>
                     
-<!--                  <div class="row mt-4">
+                  <div class="row mt-4">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
@@ -1621,7 +1622,6 @@
                         </div>
                     </div>
                 </div> 
--->
 
 
     <!-- Maintenance Modal -->
@@ -1911,6 +1911,12 @@ function showUserGuideSection() {
 
 // Enhanced weather functions for WeatherAPI.com
 async function getWeatherByCoords(lat, lon) {
+    // Check if API key is valid
+    if (!weatherConfig.apiKey || weatherConfig.apiKey === 'ADD VALID API HERE' || weatherConfig.apiKey.includes('placeholder')) {
+        console.log('WeatherAPI: Using example data (no valid API key configured)');
+        return null; // Return null to trigger example data
+    }
+    
     try {
         const response = await fetch(
             `${weatherConfig.baseUrl}current.json?key=${weatherConfig.apiKey}&q=${lat},${lon}&aqi=yes`
